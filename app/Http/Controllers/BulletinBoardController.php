@@ -18,6 +18,7 @@ class BulletinBoardController extends Controller
     {
          return view("index", [
                 "boards" => BulletinBoard::all(),
+                "salesman" => Auth::id()
               ]);
     }
 
