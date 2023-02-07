@@ -64,30 +64,31 @@
         @enderror
     </div>
 
-<div class="input_form_div">
-<label for="image">Загрузка</label>
-<input
-id="image"
-name="image"
-type="file"
-class="@error('image') is-invalid @enderror"
-/>
-@error('image')
-    <div class="alert alert-danger">{{$error}}</div>
-    @enderror
-</div>
+
 
     <div class="loadingAndSave">
-            <div class="imagesAndPhone">
-                <div class="image">
+        <div class="imagesAndPhone">
+            <div class="image">
             </div>
-
             <div class="button ">
                  <p>
                     <button type="submit">Сохранить</button>
                  </p>
-            </div>
+        </div>
     </div>
+        <div class="loading ">
+            <label for="image">Загрузка</label>
+                <input
+                    class="file_img"
+                    id="image"
+                    name="image"
+                    type="file"
+                    class="@error('image') is-invalid @enderror"
+                    />
+                    @error('image')
+                    <div class="alert alert-danger">{{$error}}</div>
+                    @enderror
+        </div>
 
         </form>
     </div>
