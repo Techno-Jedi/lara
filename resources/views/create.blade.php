@@ -76,6 +76,7 @@
                  </p>
         </div>
     </div>
+     <div class="loadingAndSave">
         <div class="loading ">
             <label for="image">Загрузка</label>
                 <input
@@ -89,7 +90,7 @@
                     <div class="alert alert-danger">{{$error}}</div>
                     @enderror
         </div>
-
+ </div>
         </form>
     </div>
 </x-app-layout>

@@ -72,11 +72,11 @@
             @enderror
     </div>
 
-
-
 <div class="loadingAndSave">
         <div class="imagesAndPhone">
             <div class="image">
+            <img src="{{ Vite::asset('public/board/' . $board->image) }}" />
+
             </div>
             <div class="button ">
                  <p>
@@ -91,7 +91,6 @@
                     id="image"
                     name="image"
                     type="file"
-                    value='{{ $board->image }}'
                     class="@error('image') is-invalid @enderror"
                     />
                     @error('image')

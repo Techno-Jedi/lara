@@ -44,9 +44,11 @@ class BulletinBoardController extends Controller
        BulletinBoard::create($request->all());
        if($request->hasFile('image')){
                $file = $request->file('image');
-               $upload_folder = 'public/board';
+//                $upload_folder = 'public/board';
                $filename = $file->getClientOriginalName();
-               Storage::putFileAs($upload_folder, $file, $filename);
+               Storage::disk('public')->url($filename);
+//                Storage::putFileAs($upload_folder, $file, $filename);
+// dd(  Storage::disk('public')->url($filename));
        }
               return redirect("/board/create");
     }
