@@ -14,7 +14,7 @@
     </div>
 @endif
     <div class="adsForm">
-        <form action="{{ route('board.store') }}" method="POST">
+        <form action="{{ route('board.store') }}" method="POST" enctype="multipart/form-data">
 @csrf
 
 <div>Продавец: {{Auth::user()->name}}
@@ -64,12 +64,15 @@
         @enderror
     </div>
 
-<div>Картинка
-<input id="filename"
-name="filename"
-type="text"
-class="@error('title') is-invalid @enderror"/>
-@error('filename')
+<div class="input_form_div">
+<label for="image">Загрузка</label>
+<input
+id="image"
+name="image"
+type="file"
+class="@error('image') is-invalid @enderror"
+/>
+@error('image')
     <div class="alert alert-danger">{{$error}}</div>
     @enderror
 </div>
@@ -85,10 +88,7 @@ class="@error('title') is-invalid @enderror"/>
                  </p>
             </div>
     </div>
-    <div class="loading">
-        <label for="file">Загрузка</label>
-        <input type="file" id="file" class="file_img"></div>
-    </div>
+
         </form>
     </div>
 </x-app-layout>

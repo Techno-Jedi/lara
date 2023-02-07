@@ -14,6 +14,6 @@ class BulletinBoard extends Model
         "description",
         "price",
         "salesman",
-        "filename"
+        "image"
         ];
 }

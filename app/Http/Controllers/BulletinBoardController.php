@@ -6,6 +6,7 @@ use App\Http\Requests\StoreBoardRequest;
 use App\Models\BulletinBoard;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class BulletinBoardController extends Controller
 {
@@ -41,7 +42,13 @@ class BulletinBoardController extends Controller
     public function store(StoreBoardRequest $request)
     {
        BulletinBoard::create($request->all());
-               return redirect("/board/create");
+       if($request->hasFile('image')){
+               $file = $request->file('image');
+               $upload_folder = 'public/board';
+               $filename = $file->getClientOriginalName();
+               Storage::putFileAs($upload_folder, $file, $filename);
+       }
+              return redirect("/board/create");
     }
 
     /**
@@ -100,4 +107,21 @@ class BulletinBoardController extends Controller
             return view("ribbon", ["boards" =>BulletinBoard::where('salesman', Auth::id())->get()]);
 
         }
+
+//         public function upload(Request $request)
+//         {
+//             // загрузка файла
+//             if ($request->isMethod('post') && $request->file('filename')) {
+//
+//                 $file = $request->file('filename');
+//                 $upload_folder = 'public/folder';
+//
+//                 $filename = $file->getClientOriginalName(); // image.jpg
+//                 Storage::putFileAs($upload_folder, $file, $filename);
+// dd($filename);
+//
+//             }
+//
+//              return redirect("/board/create");
+//         }
 }
