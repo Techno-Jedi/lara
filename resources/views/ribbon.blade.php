@@ -10,17 +10,16 @@
 
 <div class="boardAds">
     <div class="imagesAndPhone">
-        <div class= "image">Картинка:{{ $board->filename }}</div>
+       <div class= "image" >
+               <img src="{{ Vite::asset('public/storage/board/' .  $board->image )}}">
+             </div>
     </div>
-
-
 
     <div class="description-salesman">
     <a href="board/{{$board->id}}">
         <div>Название:{{$board->title}}</div>
         </a>
          <div >Описание:{{$board->description}}</div>
-
     </div>
 
     <div class="priceAndChange" >
@@ -36,7 +35,6 @@
        </form>
        </div>
     </div>
-
 </div>
 </div>
 @endforeach

@@ -26,17 +26,18 @@
     />
 </div>
 
-<div class="input_form_div"><p>Название</p>
-    <input
-        id="title"
-        class="input_form"
-        type="text"
-        name="title"
-        class="@error('title') is-invalid @enderror"/>
-        @error('title')
-    <div class="alert alert-danger">{{$error}}</div>
-        @enderror
-</div>
+    <div class="input_form_div">
+            <p>Название</p>
+        <input
+            id="title"
+            class="input_form"
+            type="text"
+            name="title"
+            class="@error('title') is-invalid @enderror"/>
+            @error('title')
+        <div class="alert alert-danger">{{$error}}</div>
+            @enderror
+    </div>
 
     <div class="textarea_div">
         <p>Описание</p>
@@ -52,7 +53,8 @@
             @enderror
     </div>
 
-    <div class="input_price_div">Цена
+    <div class="input_price_div">
+        Цена
         <input
             id="price"
              name="price"
@@ -63,13 +65,11 @@
     <div class="alert alert-danger">{{$error}}</div>
         @enderror
     </div>
-
-
-
     <div class="loadingAndSave">
         <div class="imagesAndPhone">
-            <div class="image">
-            </div>
+            <div class= "image" >
+                    <img src="{{ Vite::asset('public/storage/board/' )}}">
+                  </div>
             <div class="button ">
                  <p>
                     <button type="submit">Сохранить</button>
@@ -82,7 +82,7 @@
                 <input
                     class="file_img"
                     id="image"
-                    name="image"
+                    name="picture"
                     type="file"
                     class="@error('image') is-invalid @enderror"
                     />
@@ -90,7 +90,7 @@
                     <div class="alert alert-danger">{{$error}}</div>
                     @enderror
         </div>
- </div>
+        </div>
         </form>
     </div>
 </x-app-layout>

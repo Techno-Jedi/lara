@@ -19,7 +19,7 @@ return new class extends Migration
                                 $table->text("description");
                                 $table->integer("price");
                                 $table->string("salesman");
-                                $table->string("filename");
+                                $table->string("image");
                                 $table->timestamps();
 
                                 $table->index("title");

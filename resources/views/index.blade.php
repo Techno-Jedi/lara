@@ -4,13 +4,17 @@
             {{ __('Все объявления') }}
         </h2>
     </x-slot>
+       @vite(['resources/js/app.js'])
 @vite(['resources/css/app.css', 'resources/js/app.js'])
 @foreach($boards as $board)
 <div>
+
 <div class="boardAds">
     <div class="imagesAndPhone">
-        <div class= "image">Картинка:{{ $board->filename }}</div>
-        <div class="button"> <p>Показать телефон</p>
+        <div class= "image" >
+         <img src="{{ Vite::asset('public/storage/board/' .  $board->image )}}">
+       </div>
+        <div class="button"> <p onclick="index.showPhone(event)" id="showPhone">Показать телефон</p>
     </div>
 </div>
 <div class="description-salesman">
@@ -22,7 +26,6 @@
 </div>
 
     <div class="price">Цена:{{ $board->price }}</div>
-
 
 </div>
 @endforeach

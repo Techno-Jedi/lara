@@ -75,7 +75,7 @@
 <div class="loadingAndSave">
         <div class="imagesAndPhone">
             <div class="image">
-            <img src="{{ Vite::asset('public/board/' . $board->image) }}" />
+            <img src="{{ Vite::asset('public/storage/board/' . $board->image) }}" />
 
             </div>
             <div class="button ">

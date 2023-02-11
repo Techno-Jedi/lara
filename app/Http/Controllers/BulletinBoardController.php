@@ -41,15 +41,21 @@ class BulletinBoardController extends Controller
      */
     public function store(StoreBoardRequest $request)
     {
-       BulletinBoard::create($request->all());
-       if($request->hasFile('image')){
-               $file = $request->file('image');
-//                $upload_folder = 'public/board';
-               $filename = $file->getClientOriginalName();
-               Storage::disk('public')->url($filename);
-//                Storage::putFileAs($upload_folder, $file, $filename);
-// dd(  Storage::disk('public')->url($filename));
-       }
+        $userId = Auth::id();
+
+        $ads = new BulletinBoard();
+
+        $ads->title = $request->input('title');
+        $ads->description = $request->input('description');
+        $ads->price = $request->input('price');
+        $ads->salesman =  $userId;
+        $file = $request->file('picture');
+        $upload_folder = '/' ;
+        $filename = $file->getClientOriginalName();
+        $img = Storage::putFileAs($upload_folder, $file, $filename);
+        $imgName = substr($img, 0);
+        $ads->image = $img;
+        $ads->save();
               return redirect("/board/create");
     }
 
@@ -89,6 +95,7 @@ class BulletinBoardController extends Controller
         $data = $request->all();
                $board->update($data);
                return redirect("/board");
+
     }
 
     /**
