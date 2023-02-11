@@ -50,13 +50,17 @@ class BulletinBoardController extends Controller
         $ads->price = $request->input('price');
         $ads->salesman =  $userId;
         $file = $request->file('picture');
-        $upload_folder = '/' ;
+        $upload_folder = 'public/board' ;
         $filename = $file->getClientOriginalName();
+
         $img = Storage::putFileAs($upload_folder, $file, $filename);
-        $imgName = substr($img, 0);
-        $ads->image = $img;
+
+        $imgName = substr($filename, 0);
+
+        $ads->image = $imgName;
+
         $ads->save();
-              return redirect("/board/create");
+              return redirect("/board");
     }
 
     /**
