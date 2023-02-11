@@ -15,15 +15,15 @@ return new class extends Migration
     {
         Schema::create('bulletin_boards', function (Blueprint $table) {
          $table->id();
-                                $table->string("title");
-                                $table->text("description");
-                                $table->integer("price");
-                                $table->string("salesman");
-                                $table->string("image");
-                                $table->timestamps();
+         $table->string("title");
+         $table->text("description");
+         $table->integer("price");
+         $table->string("salesman");
+         $table->string("image")->nullable();
+         $table->timestamps();
 
-                                $table->index("title");
-                                $table->index("salesman");
+         $table->index("title");
+         $table->index("salesman");
         });
     }
 
@@ -34,6 +34,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('bulletin_boards');
+       Schema::table('bulletin_boards', function (Blueprint $table) {
+           $table->dropColumn('image');
+       });
     }
 };

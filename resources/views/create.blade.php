@@ -84,12 +84,11 @@
                     id="image"
                     name="picture"
                     type="file"
-                    class="@error('image') is-invalid @enderror"
-                    />
-                    @error('image')
-                    <div class="alert alert-danger">{{$error}}</div>
-                    @enderror
+                    class="@error('image') is-invalid @enderror"/>
         </div>
+                  @error('picture')
+                  <div class="alert alert-danger">{{$error}}</div>
+                  @enderror
         </div>
         </form>
     </div>

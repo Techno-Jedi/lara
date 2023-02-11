@@ -41,10 +41,10 @@ class BulletinBoardController extends Controller
      */
     public function store(StoreBoardRequest $request)
     {
+     BulletinBoard::create($request->all());
+      if ($request->hasFile('picture')) {
         $userId = Auth::id();
-
         $ads = new BulletinBoard();
-
         $ads->title = $request->input('title');
         $ads->description = $request->input('description');
         $ads->price = $request->input('price');
@@ -52,15 +52,12 @@ class BulletinBoardController extends Controller
         $file = $request->file('picture');
         $upload_folder = 'public/board' ;
         $filename = $file->getClientOriginalName();
-
         $img = Storage::putFileAs($upload_folder, $file, $filename);
-
         $imgName = substr($filename, 0);
-
         $ads->image = $imgName;
-
         $ads->save();
-              return redirect("/board");
+        }
+        return redirect("/board");
     }
 
     /**
@@ -72,7 +69,7 @@ class BulletinBoardController extends Controller
     public function show(BulletinBoard $board)
     {
        $ads = $board->toArray();
-               return view("show", ["board" =>BulletinBoard::where('salesman', Auth::id())->get()]);
+       return view("show", ["board" =>BulletinBoard::where('salesman', Auth::id())->get()]);
     }
 
     /**
@@ -83,8 +80,8 @@ class BulletinBoardController extends Controller
      */
     public function edit(BulletinBoard $board)
     {
-         $ads = $board->toArray();
-               return view("edit",["boards" => BulletinBoard::find($ads)]);
+       $ads = $board->toArray();
+       return view("edit",["boards" => BulletinBoard::find($ads)]);
     }
 
     /**
@@ -96,11 +93,32 @@ class BulletinBoardController extends Controller
      */
     public function update(StoreBoardRequest  $request, BulletinBoard $board)
     {
-        $data = $request->all();
-               $board->update($data);
-               return redirect("/board");
+          $data = $request->all();
+          $board->update($data);
 
+      if ($request->hasFile('picture')) {
+            $file = $request->file('picture');
+            $upload_folder = 'public/board' ;
+            $filename = $file->getClientOriginalName();
+            $img = Storage::delete($upload_folder, $file, $filename);
+            $userId = Auth::id();
+            $ads = new BulletinBoard();
+            $ads->title = $request->input('title');
+            $ads->description = $request->input('description');
+            $ads->price = $request->input('price');
+            $ads->salesman =  $userId;
+            $file = $request->file('picture');
+            $upload_folder = 'public/board' ;
+            $filename = $file->getClientOriginalName();
+            $img = Storage::putFileAs($upload_folder, $file, $filename);
+            $imgName = substr($filename, 0);
+            $ads->image = $imgName;
+            $ads->save();
+            }
+           return redirect('board');
     }
+
+
 
     /**
      * Remove the specified resource from storage.
@@ -111,30 +129,11 @@ class BulletinBoardController extends Controller
     public function destroy(BulletinBoard $board)
     {
         $board->delete();
-                return redirect("/board");
+        return redirect("/board");
     }
 
      public function myfunc(BulletinBoard $board)
         {
-
             return view("ribbon", ["boards" =>BulletinBoard::where('salesman', Auth::id())->get()]);
-
         }
-
-//         public function upload(Request $request)
-//         {
-//             // загрузка файла
-//             if ($request->isMethod('post') && $request->file('filename')) {
-//
-//                 $file = $request->file('filename');
-//                 $upload_folder = 'public/folder';
-//
-//                 $filename = $file->getClientOriginalName(); // image.jpg
-//                 Storage::putFileAs($upload_folder, $file, $filename);
-// dd($filename);
-//
-//             }
-//
-//              return redirect("/board/create");
-//         }
 }

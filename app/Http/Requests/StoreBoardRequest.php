@@ -28,7 +28,7 @@ class StoreBoardRequest extends FormRequest
                       'description' => 'required',
                       'price' => 'required',
                       'salesman' => 'required',
-                      'picture' => ['required', 'image:jpeg,jpg,png']
+                      'picture' => ["nullable"]
         ];
     }
 }
