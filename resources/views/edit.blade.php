@@ -13,6 +13,7 @@
 <form method = "POST" action="/board/{{$board->id}}" class="adsForm">
     @csrf
     @method('PUT')
+    <div>Продавец: {{Auth::user()->name}}</div>
         <div class="input_form_div">
         <p>Название:</p>
             <input
