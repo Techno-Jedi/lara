@@ -1,4 +1,5 @@
 <x-guest-layout>
+@vite(['resources/sass/app.scss', 'resources/js/app.js'])
     <form method="POST" action="{{ route('register') }}">
         @csrf
 

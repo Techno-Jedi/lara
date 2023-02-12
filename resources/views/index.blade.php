@@ -14,7 +14,7 @@
         <div class= "image" >
          <img src="{{ Vite::asset('public/storage/board/' .  $board->image )}}">
        </div>
-        <div class="button"> <p onclick="index.showPhone(event)" id="showPhone">Показать телефон</p>
+        <div class="button"><p onclick="index.showPhone(event)" id="showPhone">Показать телефон</p>
     </div>
 </div>
 <div class="description-salesman">

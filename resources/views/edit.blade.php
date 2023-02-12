@@ -58,11 +58,11 @@
     </div>
 
     <div class="input_form_div mb-10">
-        <p>Продавец:</p>
+
             <input
                 id="salesman"
                 class="input_form"
-                type="text"
+                type="hidden"
                 name="salesman"
                 class="@error('title') is-invalid @enderror"
                 value='{{ $board->salesman }}'

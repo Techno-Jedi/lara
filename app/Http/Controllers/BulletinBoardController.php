@@ -41,7 +41,7 @@ class BulletinBoardController extends Controller
      */
     public function store(StoreBoardRequest $request)
     {
-     BulletinBoard::create($request->all());
+     
       if ($request->hasFile('picture')) {
         $userId = Auth::id();
         $ads = new BulletinBoard();
@@ -56,6 +56,8 @@ class BulletinBoardController extends Controller
         $imgName = substr($filename, 0);
         $ads->image = $imgName;
         $ads->save();
+        }else{
+            BulletinBoard::create($request->all());
         }
         return redirect("/board");
     }
