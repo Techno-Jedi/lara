@@ -20,7 +20,7 @@ class BulletinBoardController extends Controller
          return view("index", [
                 "boards" => BulletinBoard::all(),
                 "salesman" => Auth::id()
-              ]);
+         ]);
     }
 
     /**
@@ -41,7 +41,6 @@ class BulletinBoardController extends Controller
      */
     public function store(StoreBoardRequest $request)
     {
-     
       if ($request->hasFile('picture')) {
         $userId = Auth::id();
         $ads = new BulletinBoard();
@@ -119,9 +118,6 @@ class BulletinBoardController extends Controller
             }
            return redirect('board');
     }
-
-
-
     /**
      * Remove the specified resource from storage.
      *
@@ -134,7 +130,7 @@ class BulletinBoardController extends Controller
         return redirect("/board");
     }
 
-     public function myfunc(BulletinBoard $board)
+     public function myAds(BulletinBoard $board)
         {
             return view("ribbon", ["boards" =>BulletinBoard::where('salesman', Auth::id())->get()]);
         }
